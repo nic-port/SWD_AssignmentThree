@@ -1,4 +1,4 @@
-<?php include '../includes/header.php'; ?>
+<?php include 'includes/header.php'; ?>
 
 <!-- HERO -->
 <section class="hero">
@@ -135,22 +135,22 @@
 
     <h2>Testimonials</h2>
 
-    <div class="features-grid">
+    <div class="testimonials-list">
 
-        <div class="feature-card glass">
-            <p>"Everything was perfectly organized. A dream wedding."</p>
-            <strong>- Client</strong>
-        </div>
+    <div class="testimonial-item">
+        <p>"Our wedding day was absolutely perfect — everything was handled with care and attention to detail."</p>
+        <span>- Emma & James</span>
+    </div>
 
-        <div class="feature-card glass">
-            <p>"The platform made everything simple and stress-free."</p>
-            <strong>- Client</strong>
-        </div>
+    <div class="testimonial-item">
+        <p>"Planning our wedding felt effortless. The platform made everything smooth and stress-free from start to finish."</p>
+        <span>- Sophie & Daniel</span>
+    </div>
 
-        <div class="feature-card glass">
-            <p>"Elegant, professional and reliable service."</p>
-            <strong>- Client</strong>
-        </div>
+    <div class="testimonial-item">
+        <p>"An elegant and professional experience. We felt supported throughout the entire journey."</p>
+        <span>- Olivia & Michael</span>
+    </div>
 
     </div>
 
@@ -162,4 +162,4 @@
     <a href="login.php" class="btn btn-primary">Get Started</a>
 </section>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
