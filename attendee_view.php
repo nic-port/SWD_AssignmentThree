@@ -31,65 +31,93 @@ $giftStmt = $pdo->query("SELECT * FROM gifts WHERE is_taken = 0");
 $gifts = $giftStmt->fetchAll();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Guest Area - Wedding Management</title>
-    
-        <link rel="stylesheet" href="assets/style.css">
+<?php include 'includes/header.php'; ?>
 
-</head>
-<body>
-    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
-    <p><a href="logout.php">Logout</a></p>
+<!-- PAGE HEADER -->
+<section class="features container fade-in">
+
+    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+
+    <p>
+        Here you can view available wedding gifts and manage your commitments.
+    </p>
+
+    <p><a href="logout.php" class="btn">Logout</a></p>
 
     <?php if ($message): ?>
-        <p style="color: green;"><strong><?php echo $message; ?></strong></p>
+        <div class="feature-card glass">
+            <strong><?php echo $message; ?></strong>
+        </div>
     <?php endif; ?>
 
+</section>
+
+<!-- GIFTS LIST -->
+<section class="features container fade-in">
+
     <h2>Wedding Gift List</h2>
+
     <p>Please select an item you would like to bring to the wedding:</p>
 
-    <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                <th>Gift Item</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (count($gifts) > 0): ?>
-                <?php foreach ($gifts as $gift): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($gift['item_name']); ?></td>
-                    <td>
-                        <form method="POST" action="attendee_view.php">
-                            <input type="hidden" name="gift_id" value="<?php echo $gift['id']; ?>">
-                            <button type="submit" name="claim_gift">I'll bring this</button>
-                        </form>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="2">No available gifts at the moment. Check back later!</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+    <div class="features-grid">
 
-    <hr>
-    <h3>My Commitments</h3>
-    <ul>
-        <?php
-        // Show what this specific guest has already promised
-        $myGifts = $pdo->prepare("SELECT item_name FROM gifts WHERE guest_id = ?");
-        $myGifts->execute([$user_id]);
-        while ($row = $myGifts->fetch()) {
-            echo "<li>" . htmlspecialchars($row['item_name']) . "</li>";
-        }
-        ?>
-    </ul>
-</body>
-</html>
+        <?php if (count($gifts) > 0): ?>
+            <?php foreach ($gifts as $gift): ?>
+
+                <div class="feature-card glass">
+
+                    <h3><?php echo htmlspecialchars($gift['item_name']); ?></h3>
+
+                    <form method="POST" action="attendee_view.php">
+                        <input type="hidden" name="gift_id" value="<?php echo $gift['id']; ?>">
+                        <button type="submit" name="claim_gift" class="btn btn-primary">
+                            I'll bring this
+                        </button>
+                    </form>
+
+                </div>
+
+            <?php endforeach; ?>
+        <?php else: ?>
+
+            <div class="feature-card glass">
+                <p>No available gifts at the moment. Check back later!</p>
+            </div>
+
+        <?php endif; ?>
+
+    </div>
+
+</section>
+
+<!-- MY COMMITMENTS -->
+<section class="features container fade-in">
+
+    <h2>My Commitments</h2>
+
+    <div class="feature-card glass">
+
+        <ul style="list-style:none; padding:0; line-height:2;">
+            <?php
+            // Show what this specific guest has already promised
+            $myGifts = $pdo->prepare("SELECT item_name FROM gifts WHERE guest_id = ?");
+            $myGifts->execute([$user_id]);
+
+            $hasGifts = false;
+
+            while ($row = $myGifts->fetch()) {
+                $hasGifts = true;
+                echo "<li>✔ " . htmlspecialchars($row['item_name']) . "</li>";
+            }
+
+            if (!$hasGifts) {
+                echo "<li>You have not selected any gifts yet.</li>";
+            }
+            ?>
+        </ul>
+
+    </div>
+
+</section>
+
+<?php include 'includes/footer.php'; ?>

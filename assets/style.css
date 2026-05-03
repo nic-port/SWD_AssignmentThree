@@ -34,9 +34,10 @@ h1, h2, h3, .logo {
   margin: auto;
 }
 
-/* ===== REUSABLE CARD SYSTEM ===== */
+/* ===== CARDS ===== */
 .card,
-.feature-card {
+.feature-card,
+.admin-card {
   background: var(--white);
   padding: 30px;
   border-radius: 14px;
@@ -46,7 +47,8 @@ h1, h2, h3, .logo {
 }
 
 .card:hover,
-.feature-card:hover {
+.feature-card:hover,
+.admin-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
@@ -220,7 +222,6 @@ h1, h2, h3, .logo {
       #faf7f2 100%
   );
   min-height: 100vh;
-  position: relative;
 }
 
 .about-section {
@@ -235,11 +236,80 @@ h1, h2, h3, .logo {
   color: #6b6b6b;
 }
 
-/* ===== GLASS ===== */
-.glass {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+/* ===== SERVICES CLEAN ===== */
+.services-clean {
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+}
+
+.service-item {
+  margin-bottom: 40px;
+  padding-left: 20px;
+  border-left: 3px solid var(--primary);
+}
+
+.service-item h3 {
+  margin-bottom: 8px;
+  color: var(--primary);
+  font-size: 20px;
+}
+
+.service-item p {
+  color: #6b6b6b;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* ===== GALLERY ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  transition: 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 12px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ===== STATUS ===== */
+.status {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.status.pending {
+  color: orange;
+}
+
+.status.approved {
+  color: green;
 }
 
 /* ===== ANIMATION ===== */
@@ -254,4 +324,11 @@ h1, h2, h3, .logo {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ===== GLASS ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }

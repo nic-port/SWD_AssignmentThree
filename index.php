@@ -8,31 +8,34 @@
 
         <div class="hero-actions">
             <a href="login.php" class="btn btn-primary">Login</a>
-            <a href="about.php" class="btn">Learn More</a>
+            <a href="about.php" class="btn">About Us</a>
         </div>
     </div>
 </section>
 
 <!-- SERVICES -->
-<section class="features container fade-in">
+<!-- SERVICES -->
+<section class="container fade-in">
 
-    <h2>Our Wedding Services</h2>
+    <h2 style="text-align:center; margin-top:80px; margin-bottom:30px;">
+        Our Wedding Services
+    </h2>
 
-    <div class="features-grid">
+    <div class="services-clean">
 
-        <div class="feature-card glass">
+        <div class="service-item">
             <h3>Wedding Planning</h3>
-            <p>Complete organization including location, decoration and catering.</p>
+            <p>We handle complete wedding organization including venue selection, decoration style, food planning and timeline coordination.</p>
         </div>
 
-        <div class="feature-card glass">
+        <div class="service-item">
             <h3>Guest Management</h3>
-            <p>Create and manage your guest list with RSVP tracking.</p>
+            <p>Easily create and manage guest lists with RSVP tracking to ensure a smooth and organized experience for everyone.</p>
         </div>
 
-        <div class="feature-card glass">
+        <div class="service-item">
             <h3>Event Coordination</h3>
-            <p>Our team ensures everything runs perfectly.</p>
+            <p>Our team ensures everything runs perfectly on the day, coordinating staff, schedule and event flow.</p>
         </div>
 
     </div>
@@ -137,20 +140,20 @@
 
     <div class="testimonials-list">
 
-    <div class="testimonial-item">
-        <p>"Our wedding day was absolutely perfect — everything was handled with care and attention to detail."</p>
-        <span>- Emma & James</span>
-    </div>
+        <div class="testimonial-item">
+            <p>"Our wedding day was absolutely perfect — everything was handled with care and attention to detail."</p>
+            <span>- Emma & James</span>
+        </div>
 
-    <div class="testimonial-item">
-        <p>"Planning our wedding felt effortless. The platform made everything smooth and stress-free from start to finish."</p>
-        <span>- Sophie & Daniel</span>
-    </div>
+        <div class="testimonial-item">
+            <p>"Planning our wedding felt effortless. The platform made everything smooth and stress-free."</p>
+            <span>- Sophie & Daniel</span>
+        </div>
 
-    <div class="testimonial-item">
-        <p>"An elegant and professional experience. We felt supported throughout the entire journey."</p>
-        <span>- Olivia & Michael</span>
-    </div>
+        <div class="testimonial-item">
+            <p>"Professional and elegant experience from start to finish."</p>
+            <span>- Olivia & Michael</span>
+        </div>
 
     </div>
 
