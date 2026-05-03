@@ -63,6 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Login - Wedding Management</title>
+
+        <link rel="stylesheet" href="assets/style.css">
+
 </head>
 <body>
     <h2>Login</h2>

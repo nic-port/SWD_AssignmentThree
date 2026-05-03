@@ -48,6 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Register - Wedding Management</title>
+
+        <link rel="stylesheet" href="assets/style.css">
+
 </head>
 <body>
     <h2>Create an Account</h2>
