@@ -1,0 +1,58 @@
+/* body background, margins, font */
+body {
+    background-color:#d3dbdb;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/*centers content, max width, same background */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #c3dbdb;
+}
+
+/*dark text, bottom spacing */
+h2 {
+    color: #0f0f0f;
+    padding-bottom: 5px;
+}
+
+/*white background, rounded corners, left-aligned text */
+form {
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: left;
+}
+
+/*spacing between grouped form elements */
+fieldset {
+    margin-bottom: 10px;
+}
+
+/* centered with auto margins, white background */
+table {
+    margin: 0 auto 20px auto;
+    background-color: #fff;
+}
+
+/*buttons */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 8px;        
+    transition: 0.3s;
+}
+
+/* button:*/
+button:hover {
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.8); 
+}
