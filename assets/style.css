@@ -19,7 +19,7 @@
 /* ===== GLOBAL ===== */
 body {
   font-family: 'Lora', serif;
-  background-color: var(--background);
+  background: var(--background);
   color: var(--text);
   line-height: 1.6;
 }
@@ -28,29 +28,9 @@ h1, h2, h3, .logo {
   font-family: 'Playfair Display', serif;
 }
 
-/* ===== CONTAINER ===== */
 .container {
   width: 85%;
   margin: auto;
-}
-
-/* ===== CARDS ===== */
-.card,
-.feature-card,
-.admin-card {
-  background: var(--white);
-  padding: 30px;
-  border-radius: 14px;
-  border: 1px solid var(--light-gray);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-  transition: var(--transition);
-}
-
-.card:hover,
-.feature-card:hover,
-.admin-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
 
 /* ===== NAVBAR ===== */
@@ -81,7 +61,6 @@ h1, h2, h3, .logo {
 .nav-links a {
   text-decoration: none;
   color: var(--text);
-  font-weight: 500;
   transition: var(--transition);
 }
 
@@ -96,42 +75,35 @@ h1, h2, h3, .logo {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
 
   background: linear-gradient(
-      rgba(250, 247, 242, 0.6),
-      rgba(250, 247, 242, 0.85)
+      rgba(250,247,242,0.6),
+      rgba(250,247,242,0.85)
     ),
     url('../images/hero.jpg') center/cover no-repeat;
 }
 
 .hero-content h1 {
   font-size: 52px;
-  font-weight: 400;
   margin-bottom: 10px;
 }
 
 .hero-content p {
-  font-size: 18px;
   color: #6b6b6b;
 }
 
 .hero-actions {
   margin-top: 20px;
   display: flex;
-  justify-content: center;
   gap: 15px;
+  justify-content: center;
 }
 
 /* ===== BUTTONS ===== */
 .btn {
   padding: 12px 25px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
   border-radius: 8px;
   text-decoration: none;
-  display: inline-block;
   transition: var(--transition);
 }
 
@@ -144,7 +116,7 @@ h1, h2, h3, .logo {
   color: white;
 }
 
-/* ===== FEATURES ===== */
+/* ===== SECTIONS ===== */
 .features {
   padding: 80px 0;
   text-align: center;
@@ -152,88 +124,28 @@ h1, h2, h3, .logo {
 
 .features h2 {
   margin-bottom: 40px;
-  font-size: 32px;
 }
 
+/* ===== CARDS ===== */
+.feature-card,
+.admin-card {
+  background: var(--white);
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid var(--light-gray);
+  transition: var(--transition);
+}
+
+.feature-card:hover,
+.admin-card:hover {
+  transform: translateY(-5px);
+}
+
+/* GRID */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
-}
-
-.feature-card h3 {
-  color: var(--primary);
-  margin-bottom: 10px;
-}
-
-/* ===== CTA ===== */
-.cta {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  text-align: center;
-  padding: 70px 20px;
-  margin-top: 60px;
-}
-
-.cta h2 {
-  font-size: 28px;
-  margin-bottom: 15px;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  text-align: center;
-  padding: 20px;
-  margin-top: 60px;
-  background: var(--white);
-  border-top: 1px solid var(--light-gray);
-}
-
-/* ===== FORMS ===== */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 400px;
-  margin: auto;
-}
-
-.login-form input,
-.login-form select {
-  padding: 12px;
-  border: 1px solid var(--light-gray);
-  border-radius: 8px;
-  font-size: 14px;
-  transition: var(--transition);
-}
-
-.login-form input:focus,
-.login-form select:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-/* ===== ABOUT ===== */
-.about-bg {
-  background: linear-gradient(
-      135deg,
-      #faf7f2 0%,
-      #f3eee7 50%,
-      #faf7f2 100%
-  );
-  min-height: 100vh;
-}
-
-.about-section {
-  padding: 80px 0;
-  text-align: center;
-}
-
-.about-intro {
-  max-width: 750px;
-  margin: 20px auto;
-  font-size: 18px;
-  color: #6b6b6b;
 }
 
 /* ===== SERVICES CLEAN ===== */
@@ -244,21 +156,14 @@ h1, h2, h3, .logo {
 }
 
 .service-item {
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   padding-left: 20px;
   border-left: 3px solid var(--primary);
 }
 
 .service-item h3 {
-  margin-bottom: 8px;
   color: var(--primary);
-  font-size: 20px;
-}
-
-.service-item p {
-  color: #6b6b6b;
-  line-height: 1.7;
-  font-size: 16px;
+  margin-bottom: 5px;
 }
 
 /* ===== GALLERY ===== */
@@ -272,15 +177,13 @@ h1, h2, h3, .logo {
   position: relative;
   overflow: hidden;
   border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .gallery-item img {
   width: 100%;
   height: 260px;
   object-fit: cover;
-  display: block;
-  transition: 0.4s ease;
+  transition: 0.4s;
 }
 
 .gallery-item:hover img {
@@ -291,32 +194,63 @@ h1, h2, h3, .logo {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   background: rgba(0,0,0,0.5);
   color: white;
-  font-size: 14px;
   text-align: center;
 }
 
-/* ===== STATUS ===== */
-.status {
-  margin-top: 10px;
-  font-weight: bold;
+/* ===== ABOUT ===== */
+.about-bg {
+  background: linear-gradient(135deg, #faf7f2, #f3eee7);
+  padding: 40px 0 10px 0;
 }
 
-.status.pending {
-  color: orange;
+.about-section {
+  text-align: center;
+  padding: 0;
 }
 
-.status.approved {
-  color: green;
+.about-intro {
+  max-width: 750px;
+  margin: 20px auto;
+  color: #6b6b6b;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-list {
+  display: grid;
+  gap: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.testimonial-item {
+  font-style: italic;
+  color: #555;
+}
+
+/* ===== CTA ===== */
+.cta {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--white);
+  border-top: 1px solid var(--light-gray);
 }
 
 /* ===== ANIMATION ===== */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeIn 1s ease forwards;
+  animation: fadeIn 1s forwards;
 }
 
 @keyframes fadeIn {
@@ -326,9 +260,6 @@ h1, h2, h3, .logo {
   }
 }
 
-/* ===== GLASS ===== */
-.glass {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+.about-bg {
+  padding-top: 40px;
 }
