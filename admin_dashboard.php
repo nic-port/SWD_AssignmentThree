@@ -74,12 +74,9 @@ if (isset($_POST['approve_event'])) {
             </p>
 
             <?php if ($event['event_status'] == 'Pending'): ?>
-                <form method="POST">
-                    <input type="hidden" name="event_id" value="<?php echo $event['id']; ?>">
-                    <button class="btn btn-primary" name="approve_event">
-                        Approve Event
-                    </button>
-                </form>
+               <a href="approve_event.php?id=<?= $event['id'] ?>" class="btn btn-primary">
+    Approve Event
+</a>
             <?php else: ?>
                 <button class="btn" disabled>Already Approved</button>
             <?php endif; ?>
