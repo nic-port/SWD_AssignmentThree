@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message_type = "error";
 
     } else {
+
         try {
             // 1. Fetch user
             $checkStmt = $pdo->prepare("SELECT id, role FROM users WHERE username = ? OR email = ?");
