@@ -1,7 +1,7 @@
 <?php
 // Database credentials
 $host = 'localhost';
-$db   = '001_wedding_schema';
+$db   = 'wedding_management';
 $user = 'root';
 $pass = ''; // Leave empty if using XAMPP default
 $charset = 'utf8mb4';
@@ -11,7 +11,7 @@ $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
 // Options for safety and error reporting
 $options = [
-    PDO::ATTR_ERR_MODE            => PDO::ERR_MODE_EXCEPTION,
+    PDO::ATTR_ERRMODE             => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE  => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES    => false,
 ];

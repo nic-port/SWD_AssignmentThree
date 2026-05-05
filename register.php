@@ -1,87 +1,127 @@
 <?php
-// 1. Establish the connection using your folder structure from image_11723a.png
 require_once 'db/db.php'; 
 
-$message = ""; // Variable to hold feedback for the user
+$message = ""; 
+$message_type = ""; // To distinguish between error and success styling
 
-// 2. Process only when the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect and sanitize (Server-side Validation)
     $username = trim($_POST['username']);
     $email    = trim($_POST['email']);
     $password = $_POST['password'];
-    $role     = $_POST['role']; // 'Organiser' or 'Attendee'
+    $role     = $_POST['role']; 
 
-    // 3. Validation Check
     if (empty($username) || empty($email) || empty($password) || empty($role)) {
-        $message = "Error: All fields are required.";
+    $message = "Error: All fields are required.";
+    $message_type = "error";
+
+    } elseif (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
+
+        $message = "Password must be at least 8 characters long and include at least one letter and one number.";
+        $message_type = "error";
+
     } else {
         try {
-            // 4. Check if Username or Email already exists (Avoid Duplicates)
-            $checkStmt = $pdo->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
+            // 1. Fetch user
+            $checkStmt = $pdo->prepare("SELECT id, role FROM users WHERE username = ? OR email = ?");
             $checkStmt->execute([$username, $email]);
-            
-            if ($checkStmt->rowCount() > 0) {
-                $message = "Error: Username or Email is already registered.";
+            $existingUser = $checkStmt->fetch();
+
+            if ($existingUser) {
+
+                if ($existingUser['role'] === 'Attendee') {
+
+                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                    $updateSql = "UPDATE users SET username = ?, password = ? WHERE id = ?";
+                    $updateStmt = $pdo->prepare($updateSql);
+                    $updateStmt->execute([$username, $hashed_password, $existingUser['id']]);
+
+                    $message = "Welcome! Your invitation has been activated. <a href='login.php'>Login here</a>";
+                    $message_type = "success";
+
+                } else {
+                    $message = "Error: Username or Email is already registered.";
+                    $message_type = "error";
+                }
+
             } else {
-                // 5. Hashing for security
+
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                // 6. Execute the INSERT using a Prepared Statement
                 $sql = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute([$username, $email, $hashed_password, $role]);
-                
+
                 $message = "Registration successful! <a href='login.php'>Click here to login</a>";
+                $message_type = "success";
             }
+
         } catch (PDOException $e) {
-            // Log error for the dev, show generic message for the user
             error_log($e->getMessage());
             $message = "A system error occurred. Please try again later.";
+            $message_type = "error";
         }
     }
 }
+
+include 'includes/header.php'; 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register - Wedding Management</title>
+<main class="container register-page fade-in">
 
-        <link rel="stylesheet" href="assets/style.css">
+    <section class="feature-card register-card">
 
-</head>
-<body>
-    <h2>Create an Account</h2>
+        <h2 class="register-title">Create an Account</h2>
 
-    <!-- Display the feedback message to the user -->
-    <?php if (!empty($message)): ?>
-        <div style="padding: 10px; margin-bottom: 15px; border: 1px solid #ccc;">
-            <?php echo $message; ?>
-        </div>
-    <?php endif; ?>
+        <?php if (!empty($message)): ?>
+            <div class="message <?= $message_type ?>">
+                <?= $message ?>
+            </div>
+        <?php endif; ?>
 
-    <form method="POST" action="register.php">
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
+        <form method="POST" action="register.php">
 
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" required>
+            </div>
 
-        <label>I am a:</label><br>
-        <select name="role" required>
-            <option value="">-- Select Role --</option>
-            <option value="Organiser">Organiser (Planning a Wedding)</option>
-            <option value="Attendee">Attendee (Guest)</option>
-        </select><br><br>
+            <div class="form-group">
+                <label>Password</label>
+                <input     type="password" 
+                            name="password" 
+                            required
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                            title="Minimum 8 characters, at least one letter and one number">
+            </div>
 
-        <button type="submit">Register</button>
-    </form>
+            <div class="form-group">
+                <label>I am a:</label>
+                <select name="role" required>
+                    <option value="">-- Select Role --</option>
+                    <option value="Organiser">Organiser (Planning a Wedding)</option>
+                    <option value="Attendee">Attendee (Guest)</option>
+                </select>
+            </div>
 
-    <p>Already have an account? <a href="login.php">Login here</a></p>
-</body>
-</html>
+            <button type="submit" class="btn btn-primary w-100">
+                Register Now
+            </button>
+
+        </form>
+
+        <p class="register-footer">
+            Already have an account?
+            <a href="login.php">Login here</a>
+        </p>
+
+    </section>
+
+</main>
+
+<?php include 'includes/footer.php'; ?>

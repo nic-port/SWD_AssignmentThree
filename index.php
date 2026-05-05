@@ -22,17 +22,17 @@
 
     <div class="services-clean">
 
-        <div class="service-item">
+        <div class="feature-card service-item">
             <h3>Wedding Planning</h3>
             <p>We handle complete wedding organization including venue selection, decoration style, food planning and timeline coordination.</p>
         </div>
 
-        <div class="service-item">
+        <div class="feature-card service-item">
             <h3>Guest Management</h3>
             <p>Easily create and manage guest lists with RSVP tracking to ensure a smooth and organized experience for everyone.</p>
         </div>
 
-        <div class="service-item">
+        <div class="feature-card service-item">
             <h3>Event Coordination</h3>
             <p>Our team ensures everything runs perfectly on the day, coordinating staff, schedule and event flow.</p>
         </div>
@@ -42,7 +42,7 @@
 </section>
 
 <!-- GALLERY PREVIEW -->
-<section class="features container fade-in">
+<section class="features container fade-in centered feature-card">
 
     <h2>Our Events</h2>
 
@@ -61,3 +61,4 @@
 </section>
 
 <?php include 'includes/footer.php'; ?>
+<script src="js/script.js"></script>

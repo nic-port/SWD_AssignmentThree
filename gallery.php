@@ -48,5 +48,6 @@
     </div>
 
 </section>
+<script src="js/script.js"></script>
 
 <?php include 'includes/footer.php'; ?>

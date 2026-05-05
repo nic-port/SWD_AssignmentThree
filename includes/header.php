@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <ul class="nav-links">
 
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
         <li><a href="index.php">Home</a></li>
         <li><a href="about.php">About</a></li>

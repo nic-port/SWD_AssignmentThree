@@ -1,28 +1,35 @@
 <?php
 session_start();
 
-/**
- * The Security Gatekeeper Function
- * This guarantees that only the allowed role can view the page.
- */
 function protect_page($allowed_role) {
-    // 1. Check if the user is even logged in
-    if (!isset($_SESSION['user_id'])) {
+
+    // 1. Validate session integrity
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
+        session_unset();
+        session_destroy();
         header("Location: login.php");
         exit();
     }
 
-    // 2. Check if their role matches the requirement
-    // If a Guest tries to enter an Admin page, or vice versa, redirect them.
-    if ($_SESSION['role'] !== $allowed_role) {
-        // Option A: Send them to their actual home dashboard based on their real role
-        if ($_SESSION['role'] === 'Admin') {
-            header("Location: admin_dashboard.php");
-        } elseif ($_SESSION['role'] === 'Organiser') {
-            header("Location: organiser_dashboard.php");
-        } else {
-            header("Location: guest_view.php");
-        }
+    // 2. Allow access if role matches
+    if ($_SESSION['role'] === $allowed_role) {
+        return;
+    }
+
+    // 3. Redirect based on role
+    if ($_SESSION['role'] === 'Admin') {
+        header("Location: admin_dashboard.php");
+    } elseif ($_SESSION['role'] === 'Organiser') {
+        header("Location: organiser_dashboard.php");
+    } elseif ($_SESSION['role'] === 'Attendee') {
+        header("Location: attendee_view.php");
+    } elseif ($_SESSION['role'] === 'Staff') {
+        header("Location: staff_dashboard.php"); // 👈 ADD THIS
+    } else {
+        // Unknown role → force logout
+        session_unset();
+        session_destroy();
+        header("Location: login.php?error=invalid_role");
         exit();
     }
 }

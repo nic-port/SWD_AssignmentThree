@@ -4,10 +4,10 @@ USE wedding_management;
 -- 1. USERS TABLE
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    role ENUM('Admin', 'Organiser', 'Attendee') NOT NULL
+    role ENUM('Admin', 'Organiser', 'Attendee', 'Staff') NOT NULL
 );
 
 -- 2. EVENTS TABLE (core system)
@@ -41,6 +41,7 @@ CREATE TABLE couple_profiles (
     bride_name VARCHAR(100),
     groom_name VARCHAR(100),
     phone_number VARCHAR(20),
+    bio TEXT,
     wedding_date DATE,
 
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -77,3 +78,6 @@ CREATE TABLE gifts (
     FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
     FOREIGN KEY (guest_id) REFERENCES guests(id) ON DELETE SET NULL
 );
+
+INSERT INTO users (username, password, email, role) 
+VALUES ('SuperAdmin', '$2y$10$fWpF7rbdugBzBXkLuaALAutgK7KBhw9PUqN5BABGJBX93MEaTJLMO', 'admin@wedding.com', 'Admin');

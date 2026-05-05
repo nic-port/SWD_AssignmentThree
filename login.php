@@ -4,7 +4,6 @@ session_start();
 
 // 2. Include your database connection (using your folder structure)
 require_once 'db/db.php';
-
 // Initialize a variable for error messages
 $error_message = "";
 
@@ -42,13 +41,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: admin_dashboard.php");
                 } elseif ($_SESSION['role'] === 'Organiser') {
                     header("Location: organiser_dashboard.php");
-                } else {
+                }  elseif ($_SESSION['role'] === 'Staff') {
+                    header("Location: staff_dashboard.php");
+                }else {
                     header("Location: attendee_view.php");
                 }
                 exit(); // Always exit after a header redirect
             } else {
                 $error_message = "Invalid username or password.";
             }
+            
         } catch (PDOException $e) {
             // Log the error and show a generic message for security
             error_log($e->getMessage());
@@ -58,30 +60,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!-- 7. The HTML Form Part (In the same file or a separate one) -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login - Wedding Management</title>
+<?php include 'includes/header.php'; ?>
 
-        <link rel="stylesheet" href="assets/style.css">
+<main class="container login-page fade-in">
+    <section class="feature-card login-card">
 
-</head>
-<body>
-    <h2>Login</h2>
+        <h2 class="login-title">Login</h2>
 
-    <?php if (!empty($error_message)): ?>
-        <p style="color: red;"><?php echo $error_message; ?></p>
-    <?php endif; ?>
+        <?php if (!empty($error_message)): ?>
+            <div class="error-message">
+                <?php echo $error_message; ?>
+            </div>
+        <?php endif; ?>
 
-    <form method="POST" action="login.php">
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
-        
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
-        
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+        <form method="POST" action="login.php">
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Log In
+            </button>
+
+            <div class="forgot-password">
+                <a href="reset_password.php">Forgot your password?</a>
+            </div>
+
+        </form>
+
+        <div class="register-box">
+            <p>New to our platform?</p>
+            <a href="register.php" class="btn">Create an Account</a>
+        </div>
+
+    </section>
+</main>
+
+<?php include 'includes/footer.php'; ?>
